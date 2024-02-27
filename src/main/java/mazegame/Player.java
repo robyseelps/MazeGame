@@ -1,4 +1,6 @@
-public class Player {
+package main.java.mazegame;
+
+public class Player implements Actor{
     private int posX;
     private int posY;
     private int speed;
@@ -23,6 +25,12 @@ public class Player {
 
     public int getPosY() {
         return posY;
+    }
+
+    @Override
+    public void setPosition(int posX, int posY) {
+        this.posX = posX;
+        this.posY = posY;
     }
 
     public int getSpeed() {
