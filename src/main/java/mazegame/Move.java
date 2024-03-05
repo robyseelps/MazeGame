@@ -1,4 +1,4 @@
-package main.java.mazegame;
+package mazegame;
 
 public class Move {
     public void move(int x, int y, Actor actor,Map map){

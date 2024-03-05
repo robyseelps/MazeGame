@@ -1,4 +1,4 @@
-package main.java.mazegame;
+package mazegame;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +49,11 @@ public class Map {
     public void setPlayer(Player player) {
         this.player = player;
     }
+
+    public Player getPlayer() {
+        return player;
+    }
+
     public boolean isWon(){
         Tile exit = null;
         for (Tile tile : tileList) {

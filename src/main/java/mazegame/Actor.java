@@ -1,4 +1,4 @@
-package main.java.mazegame;
+package mazegame;
 public interface Actor {
     int getPosX();
     int getPosY();

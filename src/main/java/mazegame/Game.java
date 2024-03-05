@@ -1,4 +1,4 @@
-package main.java.mazegame;
+package mazegame;
 
 public class Game {
     private Map map;

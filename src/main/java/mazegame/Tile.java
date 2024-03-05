@@ -1,7 +1,8 @@
-package main.java.mazegame;
+package mazegame;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class Tile {
     private int posX;
@@ -11,6 +12,11 @@ public class Tile {
     public Tile(int posX, int posY) {
         this.posX = posX;
         this.posY = posY;
+    }
+    public Tile(int posX, int posY, TileType tileType) {
+        this.posX = posX;
+        this.posY = posY;
+        this.setType(tileType);
     }
 
     public void setType(TileType type){

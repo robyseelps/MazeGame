@@ -1,4 +1,4 @@
-package main.java.mazegame;
+package mazegame;
 
 public enum Gamestate {
     PLAYING,WON,FAILED;

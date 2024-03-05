@@ -1,4 +1,4 @@
-package main.java.mazegame;
+package mazegame;
 
 public class Player implements Actor{
     private int posX;
