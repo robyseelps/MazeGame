@@ -1,4 +1,4 @@
-package mazegame;
+package sk.tuke.kpi.kp.mazegame;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ public class Tile {
     private int posX;
     private int posY;
     private TileType tileType;
-    private List<Actor> Actors = new ArrayList<>();
+    private  List<Actor> Actors = new ArrayList<>();
     public Tile(int posX, int posY) {
         this.posX = posX;
         this.posY = posY;
@@ -27,6 +27,7 @@ public class Tile {
     }
     public void addActor(Actor a){
         Actors.add(a);
+        a.setPosition(posX,posY);
         if(this.getType() == TileType.EMPTY)
             this.setType(TileType.ACTOR);
     }

@@ -1,8 +1,9 @@
-package mazegame;
+package sk.tuke.kpi.kp.mazegame;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class MapBuilder {
     private String filePath;
@@ -12,7 +13,11 @@ public class MapBuilder {
     }
 
     public Map buildMap() throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(filePath));
+        InputStream inputStream = getClass().getResourceAsStream(filePath);
+        if (inputStream == null) {
+            throw new IOException("Failed to load resource: " + filePath);
+        }
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         String line;
         int rowCount = 0;
         int columnCount = 0;
@@ -24,7 +29,8 @@ public class MapBuilder {
 
         Tile[][] mapArray = new Tile[columnCount][rowCount];
         Player player = null;
-        reader = new BufferedReader(new FileReader(filePath));
+        inputStream = getClass().getResourceAsStream(filePath);
+        reader = new BufferedReader(new InputStreamReader(inputStream));
         int y = 0;
         while ((line = reader.readLine()) != null) {
             for (int x = 0; x < line.length(); x++) {
@@ -32,7 +38,6 @@ public class MapBuilder {
                 TileType type = TileType.fromSymbol(symbol);
                 if (type == TileType.ACTOR) {
                     player = new Player(x, y);
-                    type = TileType.EMPTY;
                 }
                 mapArray[x][y] = new Tile(x, y, type);
             }

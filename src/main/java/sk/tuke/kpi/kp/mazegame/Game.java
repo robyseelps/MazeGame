@@ -1,4 +1,4 @@
-package mazegame;
+package sk.tuke.kpi.kp.mazegame;
 
 public class Game {
     private Map map;

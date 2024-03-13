@@ -1,4 +1,4 @@
-package mazegame;
+package sk.tuke.kpi.kp.mazegame;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,12 +28,14 @@ public class Map {
         this.columnCount = columnCount;
         this.player = player;
         tileList = createTileList(rowCount,columnCount,mapArray);
+        this.mapArray = mapArray;
     }
     public Map(int rowCount, int columnCount, Tile[][] mapArray){
         this.rowCount = rowCount;
         this.columnCount = columnCount;
         this.player = null;
         tileList = createTileList(rowCount,columnCount,mapArray);
+        this.mapArray = mapArray;
     }
     public List<Tile> createTileList(int rowCount,int columnCount,Tile[][] mapArray){
         List<Tile> tileList = new ArrayList<>();
