@@ -1,5 +1,7 @@
 package sk.tuke.kpi.kp.mazegame;
 
+import sk.tuke.kpi.kp.mazegame.Gamefield.MapBuilder;
+
 import java.io.IOException;
 
 public class Main {

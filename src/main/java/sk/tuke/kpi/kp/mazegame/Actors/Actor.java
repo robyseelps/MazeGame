@@ -1,4 +1,4 @@
-package sk.tuke.kpi.kp.mazegame;
+package sk.tuke.kpi.kp.mazegame.Actors;
 public interface Actor {
     int getPosX();
     int getPosY();

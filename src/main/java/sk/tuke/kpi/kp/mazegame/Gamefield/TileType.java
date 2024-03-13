@@ -1,4 +1,4 @@
-package sk.tuke.kpi.kp.mazegame;
+package sk.tuke.kpi.kp.mazegame.Gamefield;
 
 public enum TileType {
     WALL,EMPTY,ACTOR,EXIT;

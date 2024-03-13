@@ -1,4 +1,6 @@
-package sk.tuke.kpi.kp.mazegame;
+package sk.tuke.kpi.kp.mazegame.Gamefield;
+
+import sk.tuke.kpi.kp.mazegame.Actors.AbstractActor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +10,7 @@ public class Tile {
     private int posX;
     private int posY;
     private TileType tileType;
-    private  List<Actor> Actors = new ArrayList<>();
+    private  List<AbstractActor> Actors = new ArrayList<>();
     public Tile(int posX, int posY) {
         this.posX = posX;
         this.posY = posY;
@@ -25,13 +27,13 @@ public class Tile {
     public TileType getType() {
         return tileType;
     }
-    public void addActor(Actor a){
-        Actors.add(a);
+    public void addActor(AbstractActor a){
+        this.Actors.add(a);
         a.setPosition(posX,posY);
         if(this.getType() == TileType.EMPTY)
             this.setType(TileType.ACTOR);
     }
-    public void removeActor(Actor a){
+    public void removeActor(AbstractActor a){
         Actors.remove(a);
         if(Actors.isEmpty())
             this.setType(TileType.EMPTY);
@@ -49,7 +51,7 @@ public class Tile {
         return tileType;
     }
 
-    public List<Actor> getActors() {
+    public List<AbstractActor> getActors() {
         return Actors;
     }
 }

@@ -1,5 +1,7 @@
 package sk.tuke.kpi.kp.mazegame;
 
+import sk.tuke.kpi.kp.mazegame.Gamefield.Map;
+
 public class Game {
     private Map map;
     private Gamestate gamestate;
@@ -18,5 +20,11 @@ public class Game {
 
     public void setGamestate(Gamestate gamestate) {
         this.gamestate = gamestate;
+    }
+    public void updateGamestate() {
+        if (getGamestate() == Gamestate.PLAYING) {
+            if (map.checkExit())
+                gamestate = Gamestate.WON;
+        }
     }
 }

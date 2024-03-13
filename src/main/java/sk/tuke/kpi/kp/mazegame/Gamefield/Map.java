@@ -1,4 +1,7 @@
-package sk.tuke.kpi.kp.mazegame;
+package sk.tuke.kpi.kp.mazegame.Gamefield;
+
+import sk.tuke.kpi.kp.mazegame.Actors.AbstractActor;
+import sk.tuke.kpi.kp.mazegame.Actors.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +59,7 @@ public class Map {
         return player;
     }
 
-    public boolean isWon(){
+    public boolean checkExit(){
         Tile exit = null;
         for (Tile tile : tileList) {
             if (tile.getTileType() == TileType.EXIT)
@@ -67,8 +70,9 @@ public class Map {
         }
         return false;
     }
-    public void addActor(Actor a){
-        mapArray[a.getPosX()][a.getPosY()].addActor(a);
+    public void addActor(AbstractActor a){
+        Tile tile = mapArray[a.getPosX()][a.getPosY()];
+        tile.addActor(a);
     }
 
     public List<Tile> getTileList() {

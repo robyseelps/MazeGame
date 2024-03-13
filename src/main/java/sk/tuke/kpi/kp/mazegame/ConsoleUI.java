@@ -1,6 +1,12 @@
 package sk.tuke.kpi.kp.mazegame;
 
 
+import sk.tuke.kpi.kp.mazegame.Actions.Move;
+import sk.tuke.kpi.kp.mazegame.Actors.Player;
+import sk.tuke.kpi.kp.mazegame.Gamefield.Map;
+import sk.tuke.kpi.kp.mazegame.Gamefield.Tile;
+import sk.tuke.kpi.kp.mazegame.Gamefield.TileType;
+
 import java.util.Scanner;
 
 public class ConsoleUI {
@@ -25,6 +31,7 @@ public class ConsoleUI {
                 }
             }
             handleInput();
+            game.updateGamestate();
             show();
         }
         if (game.getGamestate() == Gamestate.WON) {
@@ -46,7 +53,7 @@ public class ConsoleUI {
                if (tile.getTileType() == TileType.WALL)
                    System.out.print("X");
                else if(tile.getTileType() == TileType.ACTOR)
-                       System.out.print("P");
+                      System.out.print(tile.getActors().getFirst().getSprite().spriteToString());
                else if (tile.getTileType() == TileType.EMPTY)
                        System.out.print(" ");
                else if (tile.getTileType() == TileType.EXIT)
