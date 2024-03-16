@@ -14,6 +14,7 @@ public class Game {
         return map;
     }
 
+
     public Gamestate getGamestate() {
         return gamestate;
     }
