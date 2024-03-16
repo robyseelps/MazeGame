@@ -1,11 +1,11 @@
 package sk.tuke.kpi.kp.mazegame.Actors;
 
 import sk.tuke.kpi.kp.mazegame.Gamefield.Map;
+import sk.tuke.kpi.kp.mazegame.Gamefield.Tile;
 
-public class AbstractActor implements Actor{
+public abstract class AbstractActor implements Actor{
     private int posX;
     private int posY;
-    private int speed;
     private Map actorMap;
     private Sprite sprite;
     @Override
@@ -34,15 +34,6 @@ public class AbstractActor implements Actor{
         this.posY = posY;
     }
 
-    public void setSpeed(int speed) {
-
-        this.speed = speed;
-    }
-    public int getSpeed() {
-
-        return speed;
-    }
-
     public Map getActorMap() {
         return actorMap;
     }
@@ -61,5 +52,8 @@ public class AbstractActor implements Actor{
     }
     public boolean collisionCheck(AbstractActor a){
         return this.getPosX() == a.getPosX() && this.getPosY() == a.getPosY();
+    }
+    public Tile getTile(){
+        return getActorMap().getMapArray()[getPosX()][getPosY()];
     }
 }

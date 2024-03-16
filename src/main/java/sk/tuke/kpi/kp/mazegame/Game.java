@@ -21,10 +21,11 @@ public class Game {
     public void setGamestate(Gamestate gamestate) {
         this.gamestate = gamestate;
     }
-    public void updateGamestate() {
+    public void updateGame() {
         if (getGamestate() == Gamestate.PLAYING) {
-            if (map.checkExit())
+            if (map.checkWon())
                 gamestate = Gamestate.WON;
+            map.updatePlayerCollision();
         }
     }
 }

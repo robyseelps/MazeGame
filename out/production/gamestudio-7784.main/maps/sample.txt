@@ -1,9 +1,9 @@
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 X....P...............X...............X......X
 X....................X...............X......X
-XXXXXXXXXXXXXXXXXXX..XXXXXXXXXXX.....X......X
-X.............X..............X........X.....X
-XXXXXXXXXXXXX.X..............X........X.....X
+XXXXXXXXXXXXXXXXXX..XXXXXXXXXX.......X......X
+X.............X..............X.......X......X
+XXXXXXXXXXXXX.X..............X.......X......X
 X...........................................X
 XXX......XXXXXXXXXX..XXXXXXXXXXXXXX..XXXXXXXX
 X.....XXXXXXXX.........XXXX.O........XXXXXXXX

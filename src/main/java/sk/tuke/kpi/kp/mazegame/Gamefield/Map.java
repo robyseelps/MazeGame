@@ -1,7 +1,6 @@
 package sk.tuke.kpi.kp.mazegame.Gamefield;
 
-import sk.tuke.kpi.kp.mazegame.Actors.AbstractActor;
-import sk.tuke.kpi.kp.mazegame.Actors.Player;
+import sk.tuke.kpi.kp.mazegame.Actors.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +46,11 @@ public class Map {
                 if(mapArray[i][j] == null)
                     mapArray[i][j] = new Tile(i,j);
                 tileList.add(mapArray[i][j]);
+                if(!mapArray[i][j].getActors().isEmpty()){
+                    for (AbstractActor a : mapArray[i][j].getActors()){
+                        a.setActorMap(this);
+                    }
+                }
             }
         }
         return tileList;
@@ -58,18 +62,35 @@ public class Map {
     public Player getPlayer() {
         return player;
     }
-
-    public boolean checkExit(){
-        Tile exit = null;
-        for (Tile tile : tileList) {
-            if (tile.getTileType() == TileType.EXIT)
-                exit = tile;
-        }
-        if(exit != null){
-            return player.getPosX() == exit.getPosX() && player.getPosY() == exit.getPosY();
+    public List<AbstractActor> getPlayerCollision(){
+       if( player.getTile().getActors().size() > 1 ){
+           List<AbstractActor> collisionList = new ArrayList<AbstractActor>(player.getTile().getActors());
+           collisionList.remove(player);
+           return collisionList;
+       }
+       return null;
+    }
+    public boolean checkWon() {
+        List<AbstractActor> collisionList = getPlayerCollision();
+        if (collisionList != null) {
+            return collisionList.stream()
+                    .filter(actor -> actor instanceof Exit)
+                    .map(actor -> (Exit) actor).anyMatch(Exit::isWorking);
         }
         return false;
     }
+    public void updatePlayerCollision(){
+        Tile currTIle = player.getTile();
+        if(getPlayerCollision() == null)
+            return;
+        for(AbstractActor a : getPlayerCollision()){
+                if( a instanceof Key)
+                    ((Key) a).pickUp();
+                else if( a instanceof Exit)
+                    if(!((Exit) a).isWorking())
+                        a.getSprite().setColor(SpriteColors.RED);
+            }
+        }
     public void addActor(AbstractActor a){
         Tile tile = mapArray[a.getPosX()][a.getPosY()];
         tile.addActor(a);

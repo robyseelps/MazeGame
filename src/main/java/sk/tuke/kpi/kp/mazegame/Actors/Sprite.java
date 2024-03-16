@@ -3,13 +3,13 @@ package sk.tuke.kpi.kp.mazegame.Actors;
 public class Sprite {
     // because of command console limitations sprites are represented by char symbols
 
-    private char symbol;
+    private String symbol;
     private SpriteColors color;
-    public Sprite(char symbol){
+    public Sprite(String symbol){
         this.symbol = symbol;
     }
 
-    public char getSymbol() {
+    public String getSymbol() {
         return symbol;
     }
 
@@ -19,7 +19,7 @@ public class Sprite {
     public String spriteToString(){
         return color.getString() + symbol + SpriteColors.RESET.getString();
     }
-    public void setSymbol(char symbol) {
+    public void setSymbol(String symbol) {
         this.symbol = symbol;
     }
 }
