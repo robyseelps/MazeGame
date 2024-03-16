@@ -1,0 +1,9 @@
+<archetype>
+  <id>gamestudio</id>
+  <sources>
+    <source>src/gamestudio_old/java/App.java</source>
+  </sources>
+  <testSources>
+    <source>src/test/java/AppTest.java</source>
+  </testSources>
+</archetype>
