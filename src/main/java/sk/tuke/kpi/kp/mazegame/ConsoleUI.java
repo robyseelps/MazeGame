@@ -29,6 +29,7 @@ public class ConsoleUI {
             game.updateGame();
             show();
         }
+
         if (game.getGamestate() == Gamestate.WON) {
             System.out.flush();
             System.out.println("You won!!");
