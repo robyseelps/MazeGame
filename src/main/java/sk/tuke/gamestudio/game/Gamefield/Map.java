@@ -85,14 +85,18 @@ public class Map {
         Tile currTIle = player.getTile();
         if(getPlayerCollision() == null)
             return;
-        for(AbstractActor a : getPlayerCollision()){
-                if( a instanceof Key)
-                    ((Key) a).pickUp();
-                else if( a instanceof Exit)
-                    if(!((Exit) a).isWorking())
-                        a.getSprite().setColor(SpriteColors.RED);
+        for(AbstractActor a : getPlayerCollision()) {
+            if (a instanceof Key) {
+                ((Key) a).pickUp();
+                player.addPlayerScore(20);
+            } else if (a instanceof Exit) {
+                if (!((Exit) a).isWorking()) {
+                    a.getSprite().setColor(SpriteColors.RED);
+                    player.addPlayerScore(-100);
+                }
             }
         }
+    }
     public void addActor(AbstractActor a){
         Tile tile = mapArray[a.getPosX()][a.getPosY()];
         tile.addActor(a);
