@@ -4,7 +4,6 @@ import sk.tuke.gamestudio.game.Actors.AbstractActor;
 import sk.tuke.gamestudio.game.Actors.SpriteColors;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 
@@ -13,7 +12,7 @@ public class Tile {
     private int posY;
     private int width = 3;
     private TileType tileType;
-    private LinkedList<AbstractActor> Actors = new LinkedList<>();
+    private List<AbstractActor> Actors = new ArrayList<>();
     public Tile(int posX, int posY) {
         this.posX = posX;
         this.posY = posY;
