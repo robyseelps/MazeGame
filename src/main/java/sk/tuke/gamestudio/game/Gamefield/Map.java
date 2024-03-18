@@ -90,9 +90,10 @@ public class Map {
                 ((Key) a).pickUp();
                 player.addPlayerScore(20);
             } else if (a instanceof Exit) {
-                if (!((Exit) a).isWorking()) {
+                if (!((Exit) a).isWorking() && !((Exit) a).isActivated()) {
                     a.getSprite().setColor(SpriteColors.RED);
-                    player.addPlayerScore(-100);
+                    ((Exit) a).setActivated(true);
+                    player.addPlayerScore(-60);
                 }
             }
         }

@@ -16,6 +16,10 @@ public class MapBuilder {
         this.filePath = filePath;
     }
 
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
     public Map buildMap() throws IOException {
         InputStream inputStream = getClass().getResourceAsStream(filePath);
         if (inputStream == null) {

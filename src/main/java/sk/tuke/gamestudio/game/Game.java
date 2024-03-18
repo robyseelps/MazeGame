@@ -90,7 +90,7 @@ public class Game {
         scoreServiceJDBC.addScore(getPlayerScore());
     }
     public void endGame(){
-        if(gamestate != Gamestate.PLAYING){
+        if(gamestate != Gamestate.PLAYING && map.getPlayer().getPlayerScore() != 0){
             addScore();
         }
     }
