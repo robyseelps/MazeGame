@@ -120,7 +120,7 @@ public class ConsoleUI {
                 return;
         }
         try {
-            game.setMap(mapBuilder.buildMap());
+            game = new Game(mapBuilder.buildMap(),Gamestate.PLAYING);
             Player player_old = player;
             player = game.getMap().getPlayer();
             map = game.getMap();
@@ -342,7 +342,9 @@ public class ConsoleUI {
         renderLogo();
         List<Score> scoreList = game.getScoreServiceJDBC().getTopScores("Maze");
         if (scoreList.isEmpty()) {
-            System.out.println("Leaderboard is empty.");
+            System.out.println(SpriteColors.RED.getString() + "Leaderboard is empty." + SpriteColors.RESET.getString());
+            System.out.print("Enter any key to return to menu: ");
+            String menuOption = moveScanner.nextLine();
             return;
         }
         System.out.println("Top 10 Players:");
