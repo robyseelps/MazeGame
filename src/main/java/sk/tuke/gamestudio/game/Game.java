@@ -29,6 +29,10 @@ public class Game {
         return map;
     }
 
+    public void setMap(Map map) {
+        this.map = map;
+    }
+
     public Score getPlayerScore() {
         return playerScore;
     }

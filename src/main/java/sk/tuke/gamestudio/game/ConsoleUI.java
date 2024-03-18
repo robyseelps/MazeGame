@@ -6,6 +6,7 @@ import sk.tuke.gamestudio.game.Actors.Player;
 import sk.tuke.gamestudio.game.Actors.SpriteColors;
 import sk.tuke.gamestudio.game.Gamefield.Map;
 import sk.tuke.gamestudio.game.Actions.Move;
+import sk.tuke.gamestudio.game.Gamefield.MapBuilder;
 import sk.tuke.gamestudio.game.Gamefield.Tile;
 import java.io.IOException;
 import java.util.Scanner;
@@ -37,6 +38,7 @@ public class ConsoleUI {
     }
 
     public void startGame() {
+        chooseLevel();
         show();
         while (game.getGamestate() == Gamestate.PLAYING) {
             handleInput();
@@ -60,7 +62,44 @@ public class ConsoleUI {
 
         }
     }
-
+    private void chooseLevel() {
+        System.out.println("Choose a difficulty");
+        System.out.println("1. Easy");
+        System.out.println("2. Medium");
+        System.out.println("3. Hard");
+        System.out.println("4. Back to menu");
+        System.out.print("Enter your choice: ");
+        String menuOption = moveScanner.nextLine();
+        MapBuilder mapBuilder = new MapBuilder("maps/hard.txt");
+        switch (menuOption) {
+            case "1":
+                mapBuilder.setFilePath("/maps/easy.txt");
+                break;
+            case "2":
+                mapBuilder.setFilePath("/maps/medium.txt");
+                break;
+            case "3":
+                mapBuilder.setFilePath("/maps/hard.txt");
+                break;
+            case "4":
+                showMenu();
+                return;
+            default:
+                System.out.println("Invalid option. Please try again.");
+                chooseLevel();
+                return;
+        }
+        try {
+            game.setMap(mapBuilder.buildMap());
+            Player player_old = player;
+            player = game.getMap().getPlayer();
+            map = game.getMap();
+            player.setPlayerName(player_old.getPlayerName());
+        } catch (IOException e) {
+            System.out.println("Error loading map: " + e.getMessage());
+            showMenu();
+        }
+    }
     private void showMenu() {
         System.out.println("Welcome to the MazeGame, " + player.getPlayerName());
         System.out.println("1. Start Game");

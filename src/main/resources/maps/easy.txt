@@ -1,10 +1,10 @@
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-X....P...............X...............X......X
+X....P...............X.....K.........X..0...X
 X....................X...............X......X
 XXXXXXXXXXXXXXXXXX..XXXXXXXXXX.......X......X
-X.............X..............X.......X......X
+X.K...........X..............X.......X......X
 XXXXXXXXXXXXX.X..............X.......X......X
 X...........................................X
 XXX......XXXXXXXXXX..XXXXXXXXXXXXXX..XXXXXXXX
-X.....XXXXXXXX.........XXXX.O........XXXXXXXX
+X.0......X.............X.O..................X
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
