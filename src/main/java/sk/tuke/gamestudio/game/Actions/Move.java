@@ -28,7 +28,7 @@ public class Move {
         }
     }
     public boolean isMovePossible(int x,int y, Map map){
-        if(map!= null && map.getMapArray() != null){
+        if(map!= null && map.getMapArray() != null && (x >= 0 && x <= map.getColumnCount()) && ( y >= 0 && y <= map.getRowCount())){
             return map.getMapArray()[x][y].getTileType() != TileType.WALL;
         }
         return false;

@@ -58,7 +58,7 @@ public class Map {
         return tileList;
     }
     public void setPlayer(Player player) {
-        this.player = player;
+        this.player = player; player.setActorMap(this);
     }
 
     public Player getPlayer() {
@@ -102,6 +102,7 @@ public class Map {
     public void addActor(AbstractActor a){
         Tile tile = mapArray[a.getPosX()][a.getPosY()];
         tile.addActor(a);
+        a.setActorMap(this);
     }
 
     public List<Tile> getTileList() {
