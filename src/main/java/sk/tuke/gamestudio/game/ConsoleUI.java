@@ -2,6 +2,7 @@ package sk.tuke.gamestudio.game;
 
 
 
+import sk.tuke.gamestudio.entity.Score;
 import sk.tuke.gamestudio.game.Actors.Player;
 import sk.tuke.gamestudio.game.Actors.SpriteColors;
 import sk.tuke.gamestudio.game.Gamefield.Map;
@@ -9,6 +10,7 @@ import sk.tuke.gamestudio.game.Actions.Move;
 import sk.tuke.gamestudio.game.Gamefield.MapBuilder;
 import sk.tuke.gamestudio.game.Gamefield.Tile;
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -22,6 +24,26 @@ public class ConsoleUI {
             SpriteColors.CYAN.getString() + "/    Y    \\/ __ \\_/    /\\  ___/\\    \\_\\  \\/ __ \\|  Y Y  \\  ___/ \n" +
             SpriteColors.BLUE.getString() + "\\____|__  (____  /_____ \\\\___  >\\______  (____  /__|_|  /\\___  >\n" +
             SpriteColors.PURPLE.getString() + "        \\/     \\/      \\/    \\/        \\/     \\/      \\/     \\/ \n" + SpriteColors.RESET.getString();
+    private String loseLogo = "\n" + SpriteColors.RED.getString() +
+            "▓██   ██▓ ▒█████   █    ██     ██▓     ▒█████    ██████ ▓█████ \n" +
+            " ▒██  ██▒▒██▒  ██▒ ██  ▓██▒   ▓██▒    ▒██▒  ██▒▒██    ▒ ▓█   ▀ \n" +
+            "  ▒██ ██░▒██░  ██▒▓██  ▒██░   ▒██░    ▒██░  ██▒░ ▓██▄   ▒███   \n" +
+            "  ░ ▐██▓░▒██   ██░▓▓█  ░██░   ▒██░    ▒██   ██░  ▒   ██▒▒▓█  ▄ \n" +
+            "  ░ ██▒▓░░ ████▓▒░▒▒█████▓    ░██████▒░ ████▓▒░▒██████▒▒░▒████▒\n" +
+            "   ██▒▒▒ ░ ▒░▒░▒░ ░▒▓▒ ▒ ▒    ░ ▒░▓  ░░ ▒░▒░▒░ ▒ ▒▓▒ ▒ ░░░ ▒░ ░\n" +
+            " ▓██ ░▒░   ░ ▒ ▒░ ░░▒░ ░ ░    ░ ░ ▒  ░  ░ ▒ ▒░ ░ ░▒  ░ ░ ░ ░  ░\n" +
+            " ▒ ▒ ░░  ░ ░ ░ ▒   ░░░ ░ ░      ░ ░   ░ ░ ░ ▒  ░  ░  ░     ░   \n" +
+            " ░ ░         ░ ░     ░            ░  ░    ░ ░        ░     ░  ░\n" +
+            " ░ ░                                                           \n" +
+            SpriteColors.RESET.getString();
+    private String winLogo = "\n" + SpriteColors.GREEN.getString() +
+            "░  ░░░░  ░░░      ░░░  ░░░░  ░░░░░░░░  ░░░░  ░░░      ░░░   ░░░  ░\n" +
+            "▒▒  ▒▒  ▒▒▒  ▒▒▒▒  ▒▒  ▒▒▒▒  ▒▒▒▒▒▒▒▒  ▒  ▒  ▒▒  ▒▒▒▒  ▒▒    ▒▒  ▒\n" +
+            "▓▓▓    ▓▓▓▓  ▓▓▓▓  ▓▓  ▓▓▓▓  ▓▓▓▓▓▓▓▓        ▓▓  ▓▓▓▓  ▓▓  ▓  ▓  ▓\n" +
+            "████  █████  ████  ██  ████  ████████   ██   ██  ████  ██  ██    █\n" +
+            "████  ██████      ████      █████████  ████  ███      ███  ███   █\n" +
+            "                                                                  \n" +
+            SpriteColors.RESET.getString();
     private Map map;
     Scanner moveScanner = new Scanner(System.in);
 
@@ -52,17 +74,25 @@ public class ConsoleUI {
             System.exit(1);
         }
         if (game.getGamestate() == Gamestate.WON) {
-            System.out.flush();
-            System.out.println("You won!!");
+            clearScreen();
+            System.out.println(winLogo);
             game.endGame();
         } else if (game.getGamestate() == Gamestate.FAILED) {
-            System.out.flush();
-            System.out.println("You lose! :(");
+            clearScreen();
+            System.out.println(loseLogo);
             game.endGame();
-
         }
+        try {
+            TimeUnit.SECONDS.sleep(2);
+        } catch (InterruptedException e) {
+            System.out.print("error sleep");
+            System.exit(1);
+        }
+        moveScanner.nextLine();
+        showMenu();
     }
     private void chooseLevel() {
+        renderLogo();
         System.out.println("Choose a difficulty");
         System.out.println("1. Easy");
         System.out.println("2. Medium");
@@ -100,13 +130,15 @@ public class ConsoleUI {
             showMenu();
         }
     }
-    private void showMenu() {
+    public void showMenu() {
+        renderLogo();
         System.out.println("Welcome to the MazeGame, " + player.getPlayerName());
         System.out.println("1. Start Game");
         System.out.println("2. Leave a Comment");
         System.out.println("3. Rate the Game");
         System.out.println("4. Info");
-        System.out.println("5. Exit");
+        System.out.println("5. Leaderboard");
+        System.out.println("6. Exit");
         System.out.print("Enter your choice: ");
         String menuOption = moveScanner.nextLine();
         switch (menuOption) {
@@ -126,6 +158,10 @@ public class ConsoleUI {
                 showMenu();
                 break;
             case "5":
+                showLeaderboard();;
+                showMenu();
+                break;
+            case "6":
                 System.exit(0);
             default:
                 System.out.println("Invalid option. Please try again.");
@@ -202,7 +238,7 @@ public class ConsoleUI {
         }
     }
 
-    private void clearScreen() {
+    public void clearScreen() {
         try {
             if (System.getProperty("os.name").contains("Windows")) {
                 new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
@@ -213,7 +249,7 @@ public class ConsoleUI {
         }
     }
 
-    private void getPlayerName() {
+    public void getPlayerName() {
         System.out.print("Enter you name: ");
         String playerName = moveScanner.nextLine();
         System.out.println("Your name is: " + playerName);
@@ -237,7 +273,7 @@ public class ConsoleUI {
         } while (!goodInput);
     }
 
-    private String leaveComment() {
+    public String leaveComment() {
         System.out.print("Write your comment here: ");
         String comment = moveScanner.nextLine();
         System.out.println("Your comment is: " + comment);
@@ -256,7 +292,7 @@ public class ConsoleUI {
         } while (true);
     }
 
-    private int rateGame() {
+    public int rateGame() {
         System.out.print("Rate this game 1-5: ");
         while (!moveScanner.hasNextInt()) {
             System.out.print("Error! Rate this game 1-5: ");
@@ -288,13 +324,39 @@ public class ConsoleUI {
             }
         } while (true);
     }
-    private void showInfo() {
-        System.out.println(logo);
+    public void showInfo() {
+        renderLogo();
         System.out.println(
-                "In \"MazeGame,\" maneuver through a maze using 'WASD' keys to locate the true portal among several impostors. " +
-                "Keys discovered can shut down fake portals. Gain 20 points for each key and an extra 100 points for discovering the genuine portal. " +
-                "Entering a fake portal results in a 60-point deduction, and entering three fake portals leads to losing the game. " +
+                "In \"MazeGame,\" maneuver through a maze using 'WASD' keys to locate the true portal among several impostors.\n" +
+                "Keys discovered can shut down fake portals. Gain 20 points for each key and an extra 100 points for discovering the genuine portal. \n" +
+                "Entering a fake portal results in a 60-point deduction, and entering three fake portals leads to losing the game. \n" +
                 "Aim to find the real exit to maximize your points!");
+        System.out.print("Enter any key to return to menu: ");
+        String menuOption = moveScanner.nextLine();
+    }
+    public void renderLogo(){
+        clearScreen();
+        System.out.println(logo);
+    }
+    public void showLeaderboard(){
+        renderLogo();
+        List<Score> scoreList = game.getScoreServiceJDBC().getTopScores("Maze");
+        if (scoreList.isEmpty()) {
+            System.out.println("Leaderboard is empty.");
+            return;
+        }
+        System.out.println("Top 10 Players:");
+        int count = 0;
+        for (Score score : scoreList) {
+            if(count == 0)
+                System.out.println(SpriteColors.YELLOW.getString() + (count + 1) + ". " + score.getPlayer() + ": " + score.getPoints() + SpriteColors.RESET.getString());
+            else
+                System.out.println((count + 1) + ". " + score.getPlayer() + ": " + score.getPoints());
+            count++;
+            if (count == 10 || count == scoreList.size()) {
+                break;
+            }
+        }
         System.out.print("Enter any key to return to menu: ");
         String menuOption = moveScanner.nextLine();
     }

@@ -74,6 +74,9 @@ public class Game {
                 map.getPlayer().addPlayerScore(100);
                 gamestate = Gamestate.WON;
             }
+            else if(map.getPlayer().getPlayerHp() <= 0){
+                gamestate = Gamestate.FAILED;
+            }
             map.updatePlayerCollision();
         }
     }

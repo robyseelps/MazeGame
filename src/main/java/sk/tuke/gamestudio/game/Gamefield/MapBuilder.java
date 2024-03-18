@@ -49,22 +49,22 @@ public class MapBuilder {
                     if(symbol == 'O'){
                         Exit exit = new Exit(true);
                         tile.addActor(exit);
-                        System.out.println("Exit created at " + x + " " + y);
+              //          System.out.println("Exit created at " + x + " " + y);
                     }
                     else if(symbol == '0') {
                         Exit exit = new Exit(false);
                         tile.addActor(exit);
-                        System.out.println("Exit created at " + x + " " + y);
+               //         System.out.println("Exit created at " + x + " " + y);
                     }
                     else if(symbol == 'P') {
                         player = new Player(x, y);
                         tile.addActor(player);
-                        System.out.println("Player created at " + x + " " + y);
+              //          System.out.println("Player created at " + x + " " + y);
                     }
                     else if(symbol == 'K') {
                         Key key = new Key();
                         tile.addActor(key);
-                        System.out.println("Key created at " + x + " " + y);
+              //          System.out.println("Key created at " + x + " " + y);
                     }
                     }
                 mapArray[x][y] = tile;

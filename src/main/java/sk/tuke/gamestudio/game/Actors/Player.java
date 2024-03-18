@@ -5,11 +5,13 @@ public class Player extends AbstractActor{
     private int posY;
     private String playerName;
     private int playerScore;
+    private int playerHp;
     private int viewDistanceX = 15;
     private int viewDistanceY = 9;
     public Player(int posX,int posY){
         this.posX = posX;
         this.posY = posY;
+        playerHp = 3;
         setSprite(new Sprite(".@."));
         getSprite().setColor(SpriteColors.BLUE);
         setPlayerName("Player");
@@ -18,10 +20,19 @@ public class Player extends AbstractActor{
     public Player(){
         this.posX = 0;
         this.posY = 0;
+        playerHp = 3;
         setSprite(new Sprite(".@."));
         getSprite().setColor(SpriteColors.BLUE);
         setPlayerName("Player");
 
+    }
+
+    public int getPlayerHp() {
+        return playerHp;
+    }
+
+    public void setPlayerHp(int playerHp) {
+        this.playerHp = playerHp;
     }
 
     public int getPlayerScore() {

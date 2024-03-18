@@ -94,6 +94,7 @@ public class Map {
                     a.getSprite().setColor(SpriteColors.RED);
                     ((Exit) a).setActivated(true);
                     player.addPlayerScore(-60);
+                    player.setPlayerHp(player.getPlayerHp() - 1);
                 }
             }
         }
