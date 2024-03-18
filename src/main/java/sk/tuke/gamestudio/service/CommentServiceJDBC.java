@@ -28,7 +28,7 @@ public class CommentServiceJDBC implements CommentService{
             statement.setTimestamp(4, new Timestamp(comment.getCommentedOn().getTime()));
             statement.executeUpdate();
         } catch (SQLException e) {
-            throw new ScoreException("Problem inserting comment", e);
+            throw new CommentException("Problem inserting comment", e);
         }
     }
 
@@ -46,7 +46,7 @@ public class CommentServiceJDBC implements CommentService{
                 return comments;
             }
         } catch (SQLException e) {
-            throw new ScoreException("Problem selecting comment", e);
+            throw new CommentException("Problem selecting comment", e);
         }
     }
 
@@ -57,7 +57,7 @@ public class CommentServiceJDBC implements CommentService{
         ) {
             statement.executeUpdate(DELETE);
         } catch (SQLException e) {
-            throw new ScoreException("Problem deleting comment", e);
+            throw new CommentException("Problem deleting comment", e);
         }
     }
 }

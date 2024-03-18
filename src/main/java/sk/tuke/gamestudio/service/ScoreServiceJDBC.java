@@ -18,7 +18,6 @@ public class ScoreServiceJDBC implements ScoreService {
 
     @Override
     public void addScore(Score score) {
-
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement statement = connection.prepareStatement(INSERT)
         ) {
