@@ -101,7 +101,8 @@ public class Game {
     }
     public void endGame(){
         if(gamestate != Gamestate.PLAYING && map.getPlayer().getPlayerScore() != 0){
-            addScore();
+            if(gamestate == Gamestate.WON)
+                addScore();
         }
     }
 }
