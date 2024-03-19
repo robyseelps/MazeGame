@@ -151,6 +151,10 @@ public class ConsoleUI {
                 break;
             case "3":
                 game.addRating(rateGame());
+                if(game.getAverageRating() != 0) {
+                    System.out.println("Average rating is: " + game.getAverageRating());
+                }
+                moveScanner.nextLine();
                 showMenu();
                 break;
             case "4":
@@ -252,6 +256,12 @@ public class ConsoleUI {
     public void getPlayerName() {
         System.out.print("Enter you name: ");
         String playerName = moveScanner.nextLine();
+        if(playerName.length() > 63){
+            System.out.println("Name is too long!");
+            moveScanner.nextLine();
+            getPlayerName();
+            return;
+        }
         System.out.println("Your name is: " + playerName);
         boolean goodInput = false;
         do {
@@ -276,6 +286,11 @@ public class ConsoleUI {
     public String leaveComment() {
         System.out.print("Write your comment here: ");
         String comment = moveScanner.nextLine();
+        if(comment.length() > 63){
+            System.out.println("Comment is too long!");
+            moveScanner.nextLine();
+            return leaveComment();
+        }
         System.out.println("Your comment is: " + comment);
         do {
             System.out.print("Leave comment? yes/no : ");

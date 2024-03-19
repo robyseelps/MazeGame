@@ -48,6 +48,9 @@ public class Game {
     public Rating getRating() {
         return rating;
     }
+    public int getAverageRating(){
+        return ratingServiceJDBC.getAverageRating("Maze");
+    }
 
     public void setRating(Rating rating) {
         this.rating = rating;
