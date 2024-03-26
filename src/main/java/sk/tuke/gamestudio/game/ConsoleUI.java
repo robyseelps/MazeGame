@@ -256,8 +256,8 @@ public class ConsoleUI {
     public void getPlayerName() {
         System.out.print("Enter you name: ");
         String playerName = moveScanner.nextLine();
-        if(playerName.length() > 63){
-            System.out.println("Name is too long!");
+        if(playerName.length() > 63 || playerName.isEmpty()){
+            System.out.println("Not valid name");
             moveScanner.nextLine();
             getPlayerName();
             return;
@@ -286,8 +286,8 @@ public class ConsoleUI {
     public String leaveComment() {
         System.out.print("Write your comment here: ");
         String comment = moveScanner.nextLine();
-        if(comment.length() > 63){
-            System.out.println("Comment is too long!");
+        if(comment.length() > 63 || comment.isEmpty()){
+            System.out.println("Not valid comment!");
             moveScanner.nextLine();
             return leaveComment();
         }

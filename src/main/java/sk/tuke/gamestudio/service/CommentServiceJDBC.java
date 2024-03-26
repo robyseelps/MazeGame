@@ -1,11 +1,8 @@
 package sk.tuke.gamestudio.service;
 
 import sk.tuke.gamestudio.entity.Comment;
-import sk.tuke.gamestudio.entity.Score;
-
 import java.util.List;
 import java.sql.*;
-import java.sql.Date;
 import java.util.ArrayList;
 
 
