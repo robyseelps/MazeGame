@@ -10,10 +10,8 @@ import java.util.List;
 
 @Transactional
 public class ScoreServiceJPA implements ScoreService {
-
     @PersistenceContext
     private EntityManager entityManager;
-
     @Override
     public void addScore(Score score) throws ScoreException {
         entityManager.persist(score);
@@ -26,7 +24,7 @@ public class ScoreServiceJPA implements ScoreService {
     }
 
     @Override
-    public void reset() {
+    public void reset() throws ScoreException {
         entityManager.createNamedQuery("Score.resetScores").executeUpdate();
     }
 }

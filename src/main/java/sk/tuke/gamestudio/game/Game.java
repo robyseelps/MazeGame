@@ -8,6 +8,7 @@ import sk.tuke.gamestudio.entity.Score;
 import sk.tuke.gamestudio.game.Gamefield.Map;
 import sk.tuke.gamestudio.service.*;
 
+import javax.persistence.EntityManager;
 import java.util.Date;
 
 public class Game {
@@ -23,6 +24,7 @@ public class Game {
     private CommentService commentService;
     @Autowired
     private ScoreService scoreService;
+
  //   private ScoreServiceJDBC scoreServiceJDBC = new ScoreServiceJDBC();
 //    private CommentServiceJDBC commentServiceJDBC = new CommentServiceJDBC();
  //   private RatingServiceJDBC ratingServiceJDBC = new RatingServiceJDBC();
@@ -39,6 +41,10 @@ public class Game {
     }
     public Map getMap() {
         return map;
+    }
+
+    public void setScoreService(ScoreService scoreService) {
+        this.scoreService = scoreService;
     }
 
     public void setMap(Map map) {
@@ -61,7 +67,7 @@ public class Game {
         return rating;
     }
     public int getAverageRating(){
-        return ratingService.getAverageRating("Maze");
+        return ratingService.getAverageRating("maze");
     }
 
     public void setRating(Rating rating) {
@@ -97,24 +103,27 @@ public class Game {
     }
     public void addComment(String Comment) {
         setComment(new Comment(
-                "Maze", map.getPlayer().getPlayerName(), Comment, new Date()
+                "maze", map.getPlayer().getPlayerName(), Comment, new Date()
         ));
         commentService.addComment(getComment());
     }
     public void addRating(int rating) {
         setRating(new Rating(
-                "Maze", map.getPlayer().getPlayerName(), rating, new Date()
+                "maze", map.getPlayer().getPlayerName(), rating, new Date()
         ));
         ratingService.setRating(getRating());
     }
     public void addScore(){
-        setPlayerScore(new Score("Maze",map.getPlayer().getPlayerName(),map.getPlayer().getPlayerScore(),new Date()));
+        setPlayerScore(new Score("maze",map.getPlayer().getPlayerName(),map.getPlayer().getPlayerScore(),new Date()));
         scoreService.addScore(getPlayerScore());
+    }
+    public Score getScore(){
+        return new Score("maze",map.getPlayer().getPlayerName(),map.getPlayer().getPlayerScore(),new Date());
     }
     public void endGame(){
         if(gamestate != Gamestate.PLAYING && map.getPlayer().getPlayerScore() != 0){
             if(gamestate == Gamestate.WON)
-                addScore();
+              addScore();
         }
     }
 }

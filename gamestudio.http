@@ -1,0 +1,28 @@
+POST http://localhost:8080/api/score
+Content-Type: application/json
+
+{
+  "game": "maze",
+  "player": "Josephie1",
+  "points": 100,
+  "playedOn": "2024-04-06T19:33:12"
+}
+
+###
+GET http://localhost:8080/api/rating/maze/joe
+
+###
+GET http://localhost:8080/api/rating/maze
+###
+POST http://localhost:8080/api/comment
+Content-Type: application/json
+
+{
+  "game": "maze",
+  "player": "joen",
+  "comment": "Hello!",
+  "commentedOn": "2024-04-06T19:33:12"
+}
+
+###
+GET http://localhost:8080/api/comment/maze

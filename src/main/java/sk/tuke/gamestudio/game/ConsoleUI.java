@@ -2,6 +2,7 @@ package sk.tuke.gamestudio.game;
 
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import sk.tuke.gamestudio.entity.Score;
 import sk.tuke.gamestudio.game.Actors.Player;
 import sk.tuke.gamestudio.game.Actors.SpriteColors;
@@ -9,6 +10,10 @@ import sk.tuke.gamestudio.game.Gamefield.Map;
 import sk.tuke.gamestudio.game.Actions.Move;
 import sk.tuke.gamestudio.game.Gamefield.MapBuilder;
 import sk.tuke.gamestudio.game.Gamefield.Tile;
+import sk.tuke.gamestudio.service.CommentService;
+import sk.tuke.gamestudio.service.RatingService;
+import sk.tuke.gamestudio.service.ScoreService;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
@@ -17,6 +22,7 @@ import java.util.concurrent.TimeUnit;
 public class ConsoleUI {
     private Game game;
     private Player player;
+
     private String logo = "\n" +
             SpriteColors.RED.getString() + "   _____                         ________                       \n" +
             SpriteColors.YELLOW.getString() + "  /     \\ _____  ________ ____  /  _____/_____    _____   ____  \n" +
@@ -143,6 +149,8 @@ public class ConsoleUI {
         String menuOption = moveScanner.nextLine();
         switch (menuOption) {
             case "1":
+                player.setPlayerScore(100);
+                game.addScore();
                 startGame();
                 break;
             case "2":
@@ -355,7 +363,7 @@ public class ConsoleUI {
     }
     public void showLeaderboard(){
         renderLogo();
-        List<Score> scoreList = game.getScoreService().getTopScores("Maze");
+        List<Score> scoreList = game.getScoreService().getTopScores("maze");
         if (scoreList.isEmpty()) {
             System.out.println(SpriteColors.RED.getString() + "Leaderboard is empty." + SpriteColors.RESET.getString());
             System.out.print("Enter any key to return to menu: ");
