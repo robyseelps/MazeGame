@@ -1,30 +1,42 @@
 package sk.tuke.gamestudio.game;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import sk.tuke.gamestudio.entity.Comment;
 import sk.tuke.gamestudio.entity.Rating;
 import sk.tuke.gamestudio.entity.Score;
 import sk.tuke.gamestudio.game.Gamefield.Map;
-import sk.tuke.gamestudio.service.CommentServiceJDBC;
-import sk.tuke.gamestudio.service.RatingServiceJDBC;
-import sk.tuke.gamestudio.service.ScoreServiceJDBC;
+import sk.tuke.gamestudio.service.*;
 
 import java.util.Date;
 
 public class Game {
     private Map map;
     private Gamestate gamestate;
-    private Score playerScore;
+    private Score score;
     private Rating rating;
     private Comment comment;
-    private ScoreServiceJDBC scoreServiceJDBC = new ScoreServiceJDBC();
-    private CommentServiceJDBC commentServiceJDBC = new CommentServiceJDBC();
-    private RatingServiceJDBC ratingServiceJDBC = new RatingServiceJDBC();
+
+    @Autowired
+    private RatingService ratingService;
+    @Autowired
+    private CommentService commentService;
+    @Autowired
+    private ScoreService scoreService;
+ //   private ScoreServiceJDBC scoreServiceJDBC = new ScoreServiceJDBC();
+//    private CommentServiceJDBC commentServiceJDBC = new CommentServiceJDBC();
+ //   private RatingServiceJDBC ratingServiceJDBC = new RatingServiceJDBC();
     public Game(Map map, Gamestate gamestate){
         this.map = map;
         this.gamestate = gamestate;
     }
-
+    public Game(Map map, Gamestate gamestate, ScoreService scoreService, RatingService ratingService, CommentService commentService){
+        this.map = map;
+        this.gamestate = gamestate;
+        this.scoreService = scoreService;
+        this.ratingService = ratingService;
+        this.commentService = commentService;
+    }
     public Map getMap() {
         return map;
     }
@@ -34,22 +46,22 @@ public class Game {
     }
 
     public Score getPlayerScore() {
-        return playerScore;
+        return score;
     }
 
-    public ScoreServiceJDBC getScoreServiceJDBC() {
-        return scoreServiceJDBC;
+    public ScoreService getScoreService() {
+        return scoreService;
     }
 
     public void setPlayerScore(Score playerScore) {
-        this.playerScore = playerScore;
+        this.score = playerScore;
     }
 
     public Rating getRating() {
         return rating;
     }
     public int getAverageRating(){
-        return ratingServiceJDBC.getAverageRating("Maze");
+        return ratingService.getAverageRating("Maze");
     }
 
     public void setRating(Rating rating) {
@@ -87,17 +99,17 @@ public class Game {
         setComment(new Comment(
                 "Maze", map.getPlayer().getPlayerName(), Comment, new Date()
         ));
-        commentServiceJDBC.addComment(getComment());
+        commentService.addComment(getComment());
     }
     public void addRating(int rating) {
         setRating(new Rating(
                 "Maze", map.getPlayer().getPlayerName(), rating, new Date()
         ));
-        ratingServiceJDBC.setRating(getRating());
+        ratingService.setRating(getRating());
     }
     public void addScore(){
         setPlayerScore(new Score("Maze",map.getPlayer().getPlayerName(),map.getPlayer().getPlayerScore(),new Date()));
-        scoreServiceJDBC.addScore(getPlayerScore());
+        scoreService.addScore(getPlayerScore());
     }
     public void endGame(){
         if(gamestate != Gamestate.PLAYING && map.getPlayer().getPlayerScore() != 0){

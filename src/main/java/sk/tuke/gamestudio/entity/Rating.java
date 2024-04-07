@@ -1,9 +1,20 @@
 package sk.tuke.gamestudio.entity;
 
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
-
-public class Rating {
+@Entity
+@NamedQuery( name = "Rating.getAverageRating",
+        query = "SELECT AVG(r.rating) from Rating r WHERE  r.game = :game")
+@NamedQuery( name = "Rating.resetRatings",
+        query = "DELETE FROM Rating ")
+@NamedQuery( name = "Rating.getRating",
+        query = "SELECT r.rating FROM Rating r WHERE r.game = :game AND r.player = :player ")
+public class Rating implements Serializable {
+    @Id
+    @GeneratedValue
+    private int ident;
     private String game;
 
     private String player;
@@ -11,12 +22,20 @@ public class Rating {
     private int rating;
 
     private Date ratedOn;
-
+    public Rating(){};
     public Rating(String game, String player, int rating, Date ratedOn) {
         this.game = game;
         this.player = player;
         this.rating = rating;
         this.ratedOn = ratedOn;
+    }
+
+    public int getIdent() {
+        return ident;
+    }
+
+    public void setIdent(int ident) {
+        this.ident = ident;
     }
 
     public String getGame() {

@@ -355,7 +355,7 @@ public class ConsoleUI {
     }
     public void showLeaderboard(){
         renderLogo();
-        List<Score> scoreList = game.getScoreServiceJDBC().getTopScores("Maze");
+        List<Score> scoreList = game.getScoreService().getTopScores("Maze");
         if (scoreList.isEmpty()) {
             System.out.println(SpriteColors.RED.getString() + "Leaderboard is empty." + SpriteColors.RESET.getString());
             System.out.print("Enter any key to return to menu: ");

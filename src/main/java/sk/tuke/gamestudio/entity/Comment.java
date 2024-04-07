@@ -1,9 +1,21 @@
 package sk.tuke.gamestudio.entity;
 
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import java.io.Serializable;
 import java.util.Date;
-
-public class Comment {
+@Entity
+@NamedQuery( name = "Comment.resetComments",
+        query = "DELETE FROM Comment ")
+@NamedQuery( name = "Comment.getComments",
+        query = "SELECT c.comment FROM Comment c WHERE c.game = :game")
+public class Comment implements Serializable {
+    @Id
+    @GeneratedValue
+    private int ident;
     private String game;
 
     private String player;
@@ -11,12 +23,20 @@ public class Comment {
     private String comment;
 
     private Date commentedOn;
-
+    public Comment(){};
     public Comment(String game, String player, String comment, Date commentedOn) {
         this.game = game;
         this.player = player;
         this.comment = comment;
         this.commentedOn = commentedOn;
+    }
+
+    public int getIdent() {
+        return ident;
+    }
+
+    public void setIdent(int ident) {
+        this.ident = ident;
     }
 
     public String getGame() {

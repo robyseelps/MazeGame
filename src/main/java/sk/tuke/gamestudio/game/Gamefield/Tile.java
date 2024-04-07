@@ -85,7 +85,8 @@ public class Tile {
             }
         }
         else {
-            return Actors.getLast().getSprite().spriteToString();
+            return Actors.get(Actors.size()-1)
+                    .getSprite().spriteToString();
         }
         StringBuilder stringBuilder = new StringBuilder(s1);
         for(int i = 1; i < width; i++){
