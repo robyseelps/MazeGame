@@ -5,12 +5,15 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 @Entity
+@NamedQuery( name = "Rating.getRatingColumn",
+       query = "SELECT r FROM Rating r WHERE r.game = :game AND r.player = :player ")
 @NamedQuery( name = "Rating.getAverageRating",
         query = "SELECT AVG(r.rating) from Rating r WHERE  r.game = :game")
 @NamedQuery( name = "Rating.resetRatings",
         query = "DELETE FROM Rating ")
 @NamedQuery( name = "Rating.getRating",
         query = "SELECT r.rating FROM Rating r WHERE r.game = :game AND r.player = :player ")
+
 public class Rating implements Serializable {
     @Id
     @GeneratedValue

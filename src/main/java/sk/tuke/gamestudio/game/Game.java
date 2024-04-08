@@ -6,16 +6,20 @@ import sk.tuke.gamestudio.entity.Comment;
 import sk.tuke.gamestudio.entity.Rating;
 import sk.tuke.gamestudio.entity.Score;
 import sk.tuke.gamestudio.game.Gamefield.Map;
+import sk.tuke.gamestudio.game.Gamefield.MapBuilder;
 import sk.tuke.gamestudio.service.*;
 
-import javax.persistence.EntityManager;
+import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 public class Game {
     private Map map;
     private Gamestate gamestate;
     private Score score;
+
     private Rating rating;
+
     private Comment comment;
 
     @Autowired
@@ -28,6 +32,11 @@ public class Game {
  //   private ScoreServiceJDBC scoreServiceJDBC = new ScoreServiceJDBC();
 //    private CommentServiceJDBC commentServiceJDBC = new CommentServiceJDBC();
  //   private RatingServiceJDBC ratingServiceJDBC = new RatingServiceJDBC();
+    public Game() throws IOException {
+        this.map = new MapBuilder("/maps/hard.txt").buildMap();
+        this.gamestate = Gamestate.PLAYING;
+    }
+
     public Game(Map map, Gamestate gamestate){
         this.map = map;
         this.gamestate = gamestate;
@@ -39,32 +48,33 @@ public class Game {
         this.ratingService = ratingService;
         this.commentService = commentService;
     }
+
     public Map getMap() {
         return map;
     }
+    public List<Score> getTopScores(){
+       return scoreService.getTopScores("maze");
+    }
+    public Gamestate getGamestate() {
+        return gamestate;
+    }
 
-    public void setScoreService(ScoreService scoreService) {
-        this.scoreService = scoreService;
+    public Rating getRating() {
+        return rating;
+    }
+
+    public Comment getComment() {
+        return comment;
     }
 
     public void setMap(Map map) {
         this.map = map;
     }
-
     public Score getPlayerScore() {
         return score;
     }
-
-    public ScoreService getScoreService() {
-        return scoreService;
-    }
-
     public void setPlayerScore(Score playerScore) {
         this.score = playerScore;
-    }
-
-    public Rating getRating() {
-        return rating;
     }
     public int getAverageRating(){
         return ratingService.getAverageRating("maze");
@@ -74,16 +84,8 @@ public class Game {
         this.rating = rating;
     }
 
-    public Comment getComment() {
-        return comment;
-    }
-
     public void setComment(Comment comment) {
         this.comment = comment;
-    }
-
-    public Gamestate getGamestate() {
-        return gamestate;
     }
 
     public void setGamestate(Gamestate gamestate) {

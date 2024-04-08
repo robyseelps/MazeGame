@@ -126,11 +126,12 @@ public class ConsoleUI {
                 return;
         }
         try {
-            game = new Game(mapBuilder.buildMap(),Gamestate.PLAYING);
+            game.setMap(mapBuilder.buildMap());
             Player player_old = player;
             player = game.getMap().getPlayer();
             map = game.getMap();
             player.setPlayerName(player_old.getPlayerName());
+            game.setGamestate(Gamestate.PLAYING);
         } catch (IOException e) {
             System.out.println("Error loading map: " + e.getMessage());
             showMenu();
@@ -149,8 +150,6 @@ public class ConsoleUI {
         String menuOption = moveScanner.nextLine();
         switch (menuOption) {
             case "1":
-                player.setPlayerScore(100);
-                game.addScore();
                 startGame();
                 break;
             case "2":
@@ -363,7 +362,7 @@ public class ConsoleUI {
     }
     public void showLeaderboard(){
         renderLogo();
-        List<Score> scoreList = game.getScoreService().getTopScores("maze");
+        List<Score> scoreList = game.getTopScores();
         if (scoreList.isEmpty()) {
             System.out.println(SpriteColors.RED.getString() + "Leaderboard is empty." + SpriteColors.RESET.getString());
             System.out.print("Enter any key to return to menu: ");

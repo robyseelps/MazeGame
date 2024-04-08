@@ -40,14 +40,11 @@ public class SpringClient {
     }
 
     @Bean
-    public Game game(MapBuilder mapBuilder) throws IOException {
-        return new Game(mapBuilder.buildMap(),Gamestate.PLAYING);
+    public Game game() throws IOException {
+        return new Game();
     }
 
-    @Bean
-    public MapBuilder mapBuilder(){
-        return  new MapBuilder("/maps/hard.txt");
-    }
+
     @Bean
     public ScoreService scoreService(){
         //return new ScoreServiceJPA();
