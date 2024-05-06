@@ -15,11 +15,11 @@ Content-Type: application/json
 
 {"game": "maze",
   "player": "mike",
-  "rating": 3,
+  "rating": 5,
   "ratedOn": "2024-04-06T19:33:12"
 }
 ###
-GET http://localhost:8080/api/rating/maze/mike
+GET http://localhost:8080/api/rating/maze/mikee
 ###
 GET http://localhost:8080/api/rating/maze
 ###
