@@ -16,8 +16,11 @@ public class Sprite {
     public void setColor(SpriteColors color) {
         this.color = color;
     }
+   // public String spriteToString(){
+   //     return color.getString() + symbol + SpriteColors.RESET.getString();
+   // }
     public String spriteToString(){
-        return color.getString() + symbol + SpriteColors.RESET.getString();
+        return symbol;
     }
     public void setSymbol(String symbol) {
         this.symbol = symbol;

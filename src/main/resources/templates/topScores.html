@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Top Scores</title>
+    <link rel="stylesheet" href="/css/style5.css">
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<h2>Top Scores - Hall of Fame</h2>
+<div th:if="${topScores == null or topScores.isEmpty()}">
+    <p>No top scores available</p>
+</div>
+<div th:if="${topScores != null and not topScores.isEmpty()}">
+    <table>
+        <thead>
+        <tr>
+            <th>Player</th>
+            <th>Score</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="score : ${topScores}">
+            <td th:text="${score.player}"></td>
+            <td th:text="${score.points}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

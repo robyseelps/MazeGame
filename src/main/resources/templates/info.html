@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MazeGame - Info</title>
+    <link rel="stylesheet" href="/css/style4.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+        }
+
+        .logo {
+            font-family: monospace;
+            white-space: pre;
+            text-align: center;
+            line-height: 2ch;
+            background: linear-gradient(45deg, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #8B00FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p {
+            line-height: 1.5;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<div class="container">
+    <div class="logo">
+ /     \ _____  ________ ____  /  _____/_____    _____   ____
+ /  \ /  \\__  \ \___   // __ \/   \  ___\__  \  /     \_/ __ \
+ /    Y    \/ __ \_/    /\  ___/\    \_\  \/ __ \|  Y Y  \  ___/
+ \____|__  (____  /_____ \\___  >\______  (____  /__|_|  /\___>
+  \/     \/      \/    \/        \/     \/      \/     \/
+    </div>
+
+    <p>In "MazeGame," maneuver through a maze using 'WASD' keys to locate the true portal among several impostors.</p>
+    <p>Keys discovered can shut down fake portals. Gain 20 points for each key and an extra 100 points for discovering the genuine portal.</p>
+    <p>Entering a fake portal results in a 60-point deduction, and entering three fake portals leads to losing the game.</p>
+    <p>Aim to find the real exit to maximize your points!</p>
+</div>
+</body>
+</html>

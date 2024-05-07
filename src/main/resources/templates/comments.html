@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MazeGame - Comments</title>
+    <link rel="stylesheet" href="/css/style4.css">
+    <style>
+        .comment-columns {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .comment {
+            width: 100%;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            box-sizing: border-box;
+        }
+
+        @media (min-width: 768px) {
+            .comment-columns {
+                justify-content: space-between;
+            }
+            .comment {
+                width: 48%;
+            }
+        }
+    </style>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<div class="container">
+    <div th:if="${comments == null}">
+        <p>No comments available</p>
+    </div>
+    <div th:if="${comments != null}">
+
+        <div class="comment-columns">
+            <div th:each="comment : ${comments}" class="comment">
+                <p><strong>Username:</strong> <span th:text="${comment.player}"></span></p>
+                <p><strong>Comment:</strong> <span th:text="${comment.comment}"></span></p>
+            </div>
+        </div>
+    </div>
+    <div th:if="${user != null}">
+        <form th:action="@{/leaveComment}" method="post">
+            <input type="hidden" name="player" th:value="${user.login}" />
+            <textarea name="comment" placeholder="Add your comment here" required></textarea>
+            <button type="submit">Add Comment</button>
+        </form>
+    </div>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

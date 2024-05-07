@@ -11,7 +11,7 @@ import java.util.Date;
 @NamedQuery( name = "Comment.resetComments",
         query = "DELETE FROM Comment ")
 @NamedQuery( name = "Comment.getComments",
-        query = "SELECT c.comment FROM Comment c WHERE c.game = :game")
+        query = "SELECT c  FROM Comment c WHERE c.game = :game")
 public class Comment implements Serializable {
     @Id
     @GeneratedValue

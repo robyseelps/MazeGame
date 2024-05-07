@@ -75,10 +75,13 @@ public class Tile {
         String s1;
         if(Actors.isEmpty()){
             if( getTileType() == TileType.EMPTY ){
-                s1 = SpriteColors.BLACK.getString() +  " " + SpriteColors.RESET.getString();
+               // s1 = SpriteColors.BLACK.getString() +  " " + SpriteColors.RESET.getString();
+                s1 = " ";
+
             }
             else if (getTileType() == TileType.WALL){
-                s1 = SpriteColors.GREY_BG.getString() +  " " + SpriteColors.RESET.getString();
+             //   s1 = SpriteColors.GREY_BG.getString() +  " " + SpriteColors.RESET.getString();
+                s1 = "X";
             }
             else{
                 return "Error";

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MazeGame</title>
+    <link rel="stylesheet" href="/css/style.css">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('../background.jpg');
+            background-size: cover;
+            background-position: center center;
+        }
+
+        .main-content {
+            width: 400px;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #fff;
+        }
+
+        .header-buttons {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-buttons a {
+            display: block;
+            margin-bottom: 10px;
+            color: #72b01d;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .header-buttons a:hover {
+            text-decoration: underline;
+        }
+
+        form {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        input {
+            font-family: monospace;
+            font-size: 1.2em;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: none;
+            border-bottom: 2px solid #72b01d;
+            background-color: #000;
+            color: #fff;
+            width: 100%;
+            text-align: center;
+        }
+
+        .register-link {
+            display: block;
+            margin-top: 10px;
+            text-align: right;
+            color: #72b01d;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<div class="header-buttons">
+    <a href="/topScores">Hall Of Fame</a>
+    <a href="/comments">Comments</a>
+</div>
+
+<div class="main-content">
+    <h1>Welcome to maze game!</h1>
+
+    <form action="/login" method="post">
+        <label for="login">Username:</label>
+        <input type="text" id="login" class="form-control" placeholder="Your username" name="login">
+        <label for="password">Password:</label>
+        <input type="password" id="password" class="form-control" placeholder="Your password" name="password">
+        <input type="submit" value="Submit" id="button-addon2">
+        <a href="/register" class="register-link">Register</a>
+    </form>
+
+    <h2 th:if="${errorMessage}" th:text="${errorMessage}"></h2>
+    <div id="alert" th:if="${errorMessage}" class="alert" role="alert">
+        <strong>Error:</strong> <span th:text="${errorMessage}"></span>
+    </div>
+</div>
+</body>
+</html>

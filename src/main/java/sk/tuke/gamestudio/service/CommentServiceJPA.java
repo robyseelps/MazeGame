@@ -19,7 +19,8 @@ public class CommentServiceJPA implements CommentService {
 
     @Override
     public List<Comment> getComments(String game) throws CommentException {
-        return entityManager.createNamedQuery("Comment.getComments").setParameter("game",game).getResultList();
+        return entityManager.createNamedQuery("Comment.getComments")
+                .setParameter("game",game).getResultList();
     }
 
     @Override

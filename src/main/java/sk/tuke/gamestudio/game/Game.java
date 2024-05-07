@@ -19,6 +19,7 @@ public class Game {
     private Score score;
 
     private Rating rating;
+    private boolean ended = false;
 
     private Comment comment;
 
@@ -115,17 +116,36 @@ public class Game {
         ));
         ratingService.setRating(getRating());
     }
+
+    public boolean isEnded() {
+        return ended;
+    }
+
+    public void setEnded(boolean ended) {
+        this.ended = ended;
+    }
+
     public void addScore(){
         setPlayerScore(new Score("maze",map.getPlayer().getPlayerName(),map.getPlayer().getPlayerScore(),new Date()));
         scoreService.addScore(getPlayerScore());
+
     }
     public Score getScore(){
         return new Score("maze",map.getPlayer().getPlayerName(),map.getPlayer().getPlayerScore(),new Date());
     }
     public void endGame(){
+        if(isEnded())
+            return;
         if(gamestate != Gamestate.PLAYING && map.getPlayer().getPlayerScore() != 0){
-            if(gamestate == Gamestate.WON)
-              addScore();
+            if(gamestate == Gamestate.WON) {
+                addScore();
+                setEnded(true);
+            }
         }
+    }
+    public boolean getGameOver(){
+        if(gamestate != Gamestate.PLAYING)
+            return true;
+        return false;
     }
 }

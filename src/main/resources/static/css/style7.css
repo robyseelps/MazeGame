@@ -1,0 +1,28 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: rgba(114, 176, 29, 0.8);
+}
+
+#game-map {
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #fff;
+    overflow: auto;
+    width: 100%;
+    box-sizing: border-box;
+}
