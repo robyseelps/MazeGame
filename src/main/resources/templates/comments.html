@@ -20,6 +20,13 @@
             box-sizing: border-box;
         }
 
+        /* Style for Average Rating */
+        .average-rating {
+            font-size: 24px; /* Set font size to 24px */
+            color: #ffffff; /* Set text color to white */
+            margin-bottom: 20px; /* Add bottom margin */
+        }
+
         @media (min-width: 768px) {
             .comment-columns {
                 justify-content: space-between;
@@ -34,11 +41,15 @@
 <div th:replace="fragments/header :: header"></div>
 
 <div class="container">
+    <div th:if="${avgRating != 0}" >
+         <div class="average-rating">
+            <p><strong>Average Rating:</strong> <span th:text="${avgRating}"></span></p>
+         </div>
+    </div>
     <div th:if="${comments == null}">
         <p>No comments available</p>
     </div>
     <div th:if="${comments != null}">
-
         <div class="comment-columns">
             <div th:each="comment : ${comments}" class="comment">
                 <p><strong>Username:</strong> <span th:text="${comment.player}"></span></p>

@@ -29,6 +29,10 @@ public class ServicesController {
 
     @GetMapping("/comments")
     public String showComments(Model model) {
+        int rating;
+        if (( rating = ratingService.getAverageRating("maze") )!= 0) {
+            model.addAttribute("avgRating", rating);
+        }
 
         if(loginController.getLoggedUser() != null){
             model.addAttribute("user",loginController.getLoggedUser());

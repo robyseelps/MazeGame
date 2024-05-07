@@ -33,7 +33,11 @@ public class RatingServiceJPA implements RatingService {
     @Override
     public int getAverageRating(String game) throws RatingException {
        Double averageRating = (Double) entityManager.createNamedQuery("Rating.getAverageRating").setParameter("game",game).getSingleResult();
-        return  averageRating.intValue();
+       if (averageRating != null) {
+           return averageRating.intValue();
+       }
+       return  0;
+
     }
 
     @Override
