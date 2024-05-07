@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MazeGame</title>
+    <link rel="stylesheet" href="/css/style3.css">
+</head>
+<body>
+<div class="container">
+    <div class="game-logo">
+        <pre th:text="${logo}"></pre>
+    </div>
+
+    <div class="game-content">
+        <h2>Welcome to the MazeGame, <span th:text="${playerName}"></span>!</h2>
+        <p>Choose an option:</p>
+        <ul>
+            <li><a href="/startGame">Start Game</a></li>
+            <li><a href="/comments">Leave a Comment</a></li>
+            <li><a href="/rating">Rate the Game</a></li>
+            <li><a href="/info">Info</a></li>
+            <li><a href="/topScores">Leaderboard</a></li>
+            <li><a href="/signout">Sign Out</a></li>
+        </ul>
+    </div>
+</div>
+
+<footer>&copy; 2024 MazeGame</footer>
+</body>
+</html>

@@ -1,0 +1,92 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url('../background.jpg');
+  background-size: cover;
+  background-position: center center;
+}
+
+.main-content {
+  width: 400px;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+  position: relative;
+}
+
+.alert {
+  padding: 10px;
+  margin-bottom: 10px;
+  color: #2c3e50;
+  background-color: #eaf2f8;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+  display: none;
+  text-align: center;
+}
+
+.alert strong {
+  font-weight: bold;
+}
+
+.delete-link {
+  display: block;
+  margin-top: 10px;
+  text-align: right;
+  color: #72b01d;
+  text-decoration: none;
+}
+
+form {
+  width: 100%;
+  margin-top: 20px;
+}
+
+label {
+  display: block;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+input {
+  font-family: monospace;
+  font-size: 1.2em;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: none;
+  border-bottom: 2px solid #72b01d;
+  background-color: #000;
+  color: #fff;
+  width: 100%;
+  text-align: center;
+}
+
+.register-link {
+  display: block;
+  margin-top: 10px;
+  text-align: right;
+  color: #72b01d;
+  text-decoration: none;
+}
+
+.back-button {
+  margin-top: 20px;
+  color: #72b01d;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.back-button:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MazeGame</title>
+    <link rel="stylesheet" href="/css/style2.css">
+</head>
+<body>
+<div class="background">
+    <div class="main-content">
+        <h1 style="text-align: center;">Registration</h1>
+
+        <form id="registrationForm" method="post">
+            <label for="regLogin">Username:</label>
+            <input type="text" id="regLogin" class="form-control" placeholder="Choose a username" name="login">
+            <label for="regPassword">Password:</label>
+            <input type="password" id="regPassword" class="form-control" placeholder="Choose a password" name="password">
+            <input type="submit" value="Register" id="button-addon3">
+            <div id="alert" class="alert" role="alert" style="display: none;"></div>
+            <div id="success" class="alert" role="alert" style="display: none;">
+                <strong>Success:</strong> Registration successful!
+            </div>
+        </form>
+        <a href="/" class="back-button">Back to Main Page</a>
+    </div>
+</div>
+
+<script>
+    document.getElementById("registrationForm").addEventListener("submit", function(event) {
+        var login = document.getElementById("regLogin").value;
+        var password = document.getElementById("regPassword").value;
+        if (login.trim() === "" || password.trim() === "") {
+            var alertElement = document.getElementById("alert");
+            alertElement.textContent = "Error: Please enter both username and password.";
+            alertElement.style.display = "block";
+            event.preventDefault();
+            return;
+        }
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/checkUserExistence");
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var response = JSON.parse(xhr.responseText);
+                if (response.exists) {
+                    var alertElement = document.getElementById("alert");
+                    alertElement.textContent = "Error: User with this username already exists.";
+                    alertElement.style.display = "block";
+                } else {
+                    document.getElementById("registrationForm").submit();
+                }
+            }
+        };
+        xhr.send("login=" + encodeURIComponent(login));
+        event.preventDefault();
+    });
+
+
+
+    document.getElementById("regLogin").addEventListener("input", function() {
+        var alertElement = document.getElementById("alert");
+        alertElement.style.display = "none";
+        alertElement.textContent = "";
+    });
+
+    document.getElementById("regPassword").addEventListener("input", function() {
+        var alertElement = document.getElementById("alert");
+        alertElement.style.display = "none";
+        alertElement.textContent = "";
+    });
+
+</script>
+</body>
+</html>
