@@ -11,12 +11,12 @@ database queries.
 ```bash
 git clone <repository-url>
 cd MazeGame
-```bash
+```
 ### 2️⃣ Run the Server
 Simply start GameStudioServer.java, and the application will be available at:
 ```bash
 🌐 http://localhost:8080
-```bash
+```
 ### 🛠️ Technologies Used
 Java (Spring Boot) – Backend logic & REST API
 
