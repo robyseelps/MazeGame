@@ -1,9 +1,9 @@
 # 🏆 Maze Game 🎮  
 
-Maze Game is a web-based game built with **Java Spring Boot** for the backend  
-and **Thymeleaf** for the frontend. It provides an interactive gaming experience  
-with authentication and game logic implemented efficiently using optimized  
-database queries.  
+Maze Game is a web-based adventure built with **Java Spring Boot** (backend)  
+and **Thymeleaf** (frontend). The game features authentication, a tile-based map,  
+and RESTful services for managing user data, scores, comments, and ratings.  
+
 
 ## 🚀 Getting Started  
 
@@ -18,16 +18,19 @@ Simply start GameStudioServer.java, and the application will be available at:
 🌐 http://localhost:8080
 ```
 ### 🛠️ Technologies Used
-Java (Spring Boot) – Backend logic & REST API
+Java (Spring Boot) – Backend logic, REST API
 
 Thymeleaf – Dynamic frontend rendering
 
-PostgreSQL – Database for storing game data
+Spring Security – User authentication & management
 
-Spring Security – Authentication & user management
+JPA (Hibernate) & JDBC – Database interactions
+
+PostgreSQL – Storing game data, scores, and user activity
 
 ### 📌 Features
-✔️ RESTful backend with Spring Boot
-✔️ Authentication system
-✔️ Game logic with optimized queries
-✔️ Thymeleaf-based user interface
+✔️ Tile-based maze gameplay
+✔️ User authentication (Spring Security)
+✔️ Persistence with JPA & PostgreSQL
+✔️ REST API for managing scores, ratings & comments
+✔️ Thymeleaf-based dynamic UI
