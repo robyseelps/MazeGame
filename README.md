@@ -30,7 +30,11 @@ PostgreSQL – Storing game data, scores, and user activity
 
 ### 📌 Features
 ✔️ Tile-based maze gameplay
+
 ✔️ User authentication (Spring Security)
+
 ✔️ Persistence with JPA & PostgreSQL
+
 ✔️ REST API for managing scores, ratings & comments
+
 ✔️ Thymeleaf-based dynamic UI
